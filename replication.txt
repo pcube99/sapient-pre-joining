@@ -1,0 +1,55 @@
+1) mongod --port 27017 --dbpath /var/lib/mongodb --replSet replicationSet
+
+2) mkdir /var/lib/mongodb1
+
+3) mkdir /var/lib/mongodb2
+
+4) mongod --port 27018 --dbpath /var/lib/mongodb1 --replSet replicationSet
+
+5) mongod --port 27019 --dbpath /var/lib/mongodb2 --replSet replicationSet
+
+mongodb1 is for simple replication and mongodb2 is for delayed replication
+	mongodb - 27017 (primary)
+	mongodb1 - 27018
+	mongodb2 - 27019
+
+6) mongo --port 27017 (to run queries in primary node)
+
+7) rs.initiate() (for initiating replication set)
+
+8) rs.add("localhost:27018");
+   
+9) rs.add("localhost:27019");
+
+10) cnf = {_id: 'replicationSet', "protocolVersion" : NumberLong(1), members: [{_id: 0, host: 'localhost:27017'}, 
+            {_id: 1, host: 'localhost:27018'}, 
+            {_id: 2, host: 'localhost:27019', priority: 0, hidden: true, slaveDelay: 3600}]}
+
+
+11) rs.reconfig(cnf)
+
+12) rs.config() (to verify the delay of the node)
+
+13) add some data in primary node and check in secondary node
+
+	use daiict
+	db.batch2020.insertOne({name: "pankil" , sid: 201601141})
+
+14) verify the replication
+    
+    mongo --port 27018
+    rs.slaveOk() (to allow replication access)
+    use daiict
+    db.batch2020.find()
+
+15) verify the delayed replication 
+    
+    mongo --port 27019
+    rs.slaveOk() (to allow replication access)
+    use daiict
+    db.batch2020.find()
+
+
+
+
+
