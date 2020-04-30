@@ -20,7 +20,7 @@ public class MapExampleRunner {
 			System.out.println("Do you want to add this key in map ?");
 			System.out.println("Y/N");
 			String choice = sc.nextLine();
-			if(choice.equals("Y") || choice.equals("y")) {
+			if(choice.equalsIgnoreCase("Y")) {
 
 			    while (sc.hasNextLine()){   // test for new input
 			       line=sc.nextLine();  // get input
@@ -30,12 +30,12 @@ public class MapExampleRunner {
 			       inputSet.add(line);
 			    }
 				example.mp.put(input, inputSet);
-			} else if(choice.equals("N") || choice.equals("n")) {
+			} else if(choice.equalsIgnoreCase("Y")) {
 				System.out.println("----------BYE----------");
 			} else {
 				System.out.println("Enter valid input and try again !!!");
 			}
-			if(choice.equals("Y") || choice.equals("y")) {
+			if(choice.equalsIgnoreCase("Y")) {
 				System.out.println("\nUpdated value of map is \n");
 				for(String i : example.mp.keySet()) {
 					System.out.println("key is " + i + " ,value is "+ example.mp.get(i));
