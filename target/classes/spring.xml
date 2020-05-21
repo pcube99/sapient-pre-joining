@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="mobile" class="com.sapient.week7.Mobile" autowire="byType"></bean>
+
+    <bean id="camera" class="com.sapient.week7.Camera">
+        <property name="no_of_mg_pixels" value="100"></property>
+    </bean>
+    <bean id="speaker" class="com.sapient.week7.Speaker">
+        <property name="vol_levels" value="50"></property>
+        <property name="speaker_type" value="JBL"></property>
+    </bean>
+    <bean id="screen" class="com.sapient.week7.Screen">
+        <property name="length" value="15"></property>
+        <property name="breadth" value="6"></property>
+    </bean>
+
+</beans>
