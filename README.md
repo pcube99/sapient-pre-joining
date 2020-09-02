@@ -1,4 +1,13 @@
-# sapient-pre-joining
+# sapient-pre-joining (PJP 2.0)
+1. ![Week 1 (PJP2.0)](https://github.com/pcube99/sapient-pre-joining) <br />
+ - Basics of git
+ - code is in multiple branches eg, qa,feature, uat etc.
+ 
+2. ![Week 2 (PJP2.0)](https://github.com/pcube99/sapient-pre-joining/tree/week-2(PJP2.0)) <br />
+ - Calculator Application
+ - Income Analysis with junit
+ 
+# sapient-pre-joining (PJP 1.0)
 
 1. ![Week 1](https://github.com/pcube99/sapient-pre-joining/tree/week-1)  <br />
  - Created a simple hello world java project
