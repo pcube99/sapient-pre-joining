@@ -1,0 +1,16 @@
+1) Write shell scripts / batch files to list out all the mvn goals available
+   mvn help:describe –Dplugin=eclipse
+
+2) Write shell scripts / batch files to demonstrate leveraging local copy of maven within the
+project.
+   mvn -Dmaven.repo.local=$HOME/.m2 clean install
+   Beacause maven is using local copies of dependencies so it can work without internet
+
+3) Write shell scripts / batch files to extract & save the build logs to a file 
+instead of console output
+   mvn install > logfie.txt
+
+4) Write shell scripts / batch files to prevent maven from downloading dependencies every time /
+Make maven work without internet
+   mvn dependency:go-offline 
+   mvn –o clean package
