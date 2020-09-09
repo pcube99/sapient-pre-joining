@@ -44,26 +44,6 @@ public class DateCalculator {
         return validConvertedDate;
     }
 
-    // add two dates
-    public void addTwoDates() {
-        LocalDate answerDate = date1;
-        answerDate = answerDate.plusDays(date2.getDayOfMonth());
-        answerDate = answerDate.plusMonths(date2.getMonthValue());
-        answerDate = answerDate.plusYears(date2.getYear());
-        System.out.println("Result of " + date1 + " + " + date2 + " is ");
-        System.out.println("Date " + answerDate);
-    }
-
-    // subtract two dates
-    public void subtractTwoDates() {
-        LocalDate answerDate = date1;
-        answerDate = answerDate.minusDays(date2.getDayOfMonth());
-        answerDate = answerDate.minusMonths(date2.getMonthValue());
-        answerDate = answerDate.minusYears(date2.getYear());
-        System.out.println("Result of " + date1 + " - " + date2 + " is ");
-        System.out.println("Date " + answerDate);
-    }
-
     // add days to a given date
     public void addDaysToDate(LocalDate date, int days) {
         LocalDate answerDate;
@@ -78,6 +58,24 @@ public class DateCalculator {
         System.out.println(date + " - " + days + " is "+ answerDate);
     }
 
+    // add two dates
+    public void addTwoDates() {
+        LocalDate answerDate = date1;
+        answerDate = answerDate.plusDays(date2.getDayOfMonth());
+        answerDate = answerDate.plusMonths(date2.getMonthValue());
+        answerDate = answerDate.plusYears(date2.getYear());
+        System.out.println("Result of " + date1 + " + " + date2 + " is " + answerDate);
+    }
+
+    // subtract two dates
+    public void subtractTwoDates() {
+        LocalDate answerDate = date1;
+        answerDate = answerDate.minusDays(date2.getDayOfMonth());
+        answerDate = answerDate.minusMonths(date2.getMonthValue());
+        answerDate = answerDate.minusYears(date2.getYear());
+        System.out.println("Result of " + date1 + " - " + date2 + " is " + answerDate);
+    }
+    
     // find day of week on a given date
     public void findDayOfGivenDate(LocalDate date) {
         System.out.println("Day Of The Week is " + date.getDayOfWeek());
