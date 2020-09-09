@@ -6,6 +6,9 @@
 2. ![Week 2 (PJP2.0)](https://github.com/pcube99/sapient-pre-joining/tree/week-2(PJP2.0)) <br />
  - Calculator Application
  - Income Analysis with junit
+ - Fee Calculator
+ - Date Calculator
+ - Maven basic commands
  
 # sapient-pre-joining (PJP 1.0)
 
