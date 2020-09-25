@@ -1,5 +1,6 @@
 package com.sapient.pjp;
-
+import com.sapient.pjp.models.DateCalculator;
+import com.sapient.pjp.services.DateCalculatorService;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -7,21 +8,33 @@ public class DateCalculatorRunner {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String dateInput1, dateInput2;
-        LocalDate date1, date2;
+        LocalDate date1, date2, date = null;
         int numberOfDays, numberOfChoice;
-        LocalDate date = null;
 
+        // scanning the input
         System.out.println("Welcome To Date Calculator");
-
-        System.out.println("Enter Date 1 in the format yyyy-MM-dd: ");
+        System.out.println("Enter Date 1 in the format dd-MM-yyyy: ");
         dateInput1 = scanner.next();
-        System.out.println("Enter Date 2 in the format yyyy-MM-dd: ");
+        System.out.println("Enter Date 2 in the format dd-MM-yyyy: ");
         dateInput2 = scanner.next();
+
+        // creating new instances for model and services
         DateCalculator dateTimeCalculator = new DateCalculator();
-        date1 = dateTimeCalculator.convertToDate(dateInput1);
+        DateCalculatorService dateCalculatorService = new DateCalculatorService(dateTimeCalculator);
+
+        // we need date in local format, so convert string to local format
+        date1 = dateCalculatorService.getNaturalDate(dateInput1);
+        if(date1 == null) {
+            date1 = dateCalculatorService.convertToDate(dateInput1);
+        }
         System.out.println("Date 1: " + date1);
-        date2 = dateTimeCalculator.convertToDate(dateInput2);
+
+        date2 = dateCalculatorService.getNaturalDate(dateInput2);
+        if(date2 == null) {
+            date2 = dateCalculatorService.convertToDate(dateInput2);
+        }
         System.out.println("Date 2: " + date2);
+
         dateTimeCalculator.setDate1(date1);
         dateTimeCalculator.setDate2(date2);
         do {
@@ -37,38 +50,51 @@ public class DateCalculatorRunner {
             numberOfChoice = scanner.nextInt();
             switch (numberOfChoice) {
                 case 1:
-                    dateTimeCalculator.addTwoDates();
+                    // add two dates
+                    dateCalculatorService.addTwoDates();
                     break;
                 case 2:
-                    dateTimeCalculator.subtractTwoDates();
+                    // substract two dates
+                    dateCalculatorService.subtractTwoDates();
                     break;
+
                 case 3:
-                    System.out.println("Enter Date in the format yyyy-MM-dd");
+                    // add days to given date
+                    System.out.println("Enter Date in the format dd-MM-yyyy");
                     dateInput1 = scanner.next();
-                    date = dateTimeCalculator.convertToDate(dateInput1);
+
                     System.out.println("Enter the number of days you want to add");
                     numberOfDays = scanner.nextInt();
-                    dateTimeCalculator.addDaysToDate(date, numberOfDays);
+                    Boolean flag = true;
+                    date = dateCalculatorService.getNaturalDate(dateInput1);
+                    if(date == null) {
+                        date = dateCalculatorService.convertToDate(dateInput1);
+                    }
+                    dateCalculatorService.addDaysToDate(date, numberOfDays);
                     break;
                 case 4:
-                    System.out.println("Enter Date in the format yyyy-MM-dd: ");
+                    // substract days from given date
+                    System.out.println("Enter Date in the format dd-MM-yyyy: ");
                     dateInput1 = scanner.next();
-                    date = dateTimeCalculator.convertToDate(dateInput1);
+
+                    date = dateCalculatorService.convertToDate(dateInput1);
                     System.out.println("Enter the number of days you want to subtract:");
                     numberOfDays = scanner.nextInt();
-                    dateTimeCalculator.subtractDays(date, numberOfDays);
+                    dateCalculatorService.subtractDays(date, numberOfDays);
                     break;
                 case 5:
-                    System.out.println("Enter Date in the format yyyy-MM-dd: ");
+                    // find day of week
+                    System.out.println("Enter Date in the format dd-MM-yyyy: ");
                     dateInput1 = scanner.next();
-                    date = dateTimeCalculator.convertToDate(dateInput1);
-                    dateTimeCalculator.findDayOfGivenDate(date);
+                    date = dateCalculatorService.convertToDate(dateInput1);
+                    dateCalculatorService.findDayOfGivenDate(date);
                     break;
                 case 6:
-                    System.out.println("Enter Date in the format yyyy-MM-dd: ");
+                    // find which day on given date
+                    System.out.println("Enter Date in the format dd-MM-yyyy: ");
                     dateInput1 = scanner.next();
-                    date = dateTimeCalculator.convertToDate(dateInput1);
-                    dateTimeCalculator.findWeekNumberOfGivenDate(date);
+                    date = dateCalculatorService.convertToDate(dateInput1);
+                    dateCalculatorService.findWeekNumberOfGivenDate(date);
                     break;
 
                 default:
